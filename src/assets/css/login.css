@@ -1,0 +1,73 @@
+.login{
+	background: rgb(173,83,137);
+	background: linear-gradient(336deg, rgba(173,83,137,1) 0%, rgba(109,45,106,1) 22%, rgba(60,16,83,1) 100%);
+	min-height: 100vh;
+}
+.login-section{
+	background: #fff;
+	height:100%;		
+}
+.login-main{
+	margin: 80px 0;
+}
+.left-login{
+	background: rgb(173,83,137) url('../img/login-bg.jpg') no-repeat;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	background-position: right;
+	background-size: cover;
+	height:auto;
+	padding:50px;
+	color: #fff;
+	text-align:center;
+	display:flex;
+	justify-content:center;
+	align-items: center;
+	flex-direction: column;
+}
+.logo-img{
+	height: auto;
+	width: 100%;
+	margin-bottom: 2rem;
+}
+.login-inputs{
+	padding: 50px;
+}
+.login-title{
+	text-transform:uppercase;
+	text-align:center;
+	font-size:18px;
+	margin-bottom: 1.5rem;
+	letter-spacing:1px;
+	color:#8E417A;
+}
+.login-inputs .input-group-text{
+	background: none;
+	border: none;
+	padding: .375rem 0 .375rem .75rem;	
+}
+.login-inputs .form-control{
+	border: none;
+	border-radius: 12px;
+	font-size:15px;
+}
+.login-inputs .form-control:focus{
+	box-shadow: none;
+}
+.login-inputs .input-group{
+	border: 1px solid #dee2e6;
+	border-radius: 10px;
+	overflow: hidden;
+}
+.link-blue{
+	font-size: 14px;
+	color:#8E417A;
+	text-decoration:none;	
+}
+.btn-blue{
+	border: none;
+	padding: .35rem 1.5rem;
+	border-radius: 10px;
+	background: #9236BB;
+	color: #fff;
+	text-transform:uppercase;
+}

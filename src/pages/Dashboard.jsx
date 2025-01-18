@@ -9,7 +9,8 @@ function Dashboard(){
                 <div className="row">
                     <div className="col-md-4">
                         <Card title="Pie Chart" icon="">
-                            <div className="piechart"></div>
+                            <div>No Data Found</div>
+                            {/* <div className="piechart"></div> */}
                         </Card>
                     </div>
                 </div>

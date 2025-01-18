@@ -128,6 +128,14 @@ body{
 	display: none;
 }
 
+.sidebar.active .logo-big{
+	display: none;
+}
+
+.sidebar.active .logo-small{
+	display: block;
+}
+
 @media (max-width: 1199.98px){ 
 
     .sidebar ul li a span, .sidebar a span{
@@ -148,6 +156,13 @@ body{
         border-radius: 12px;
         white-space: nowrap;
     }
+	.sidebar.active .logo-big{
+		display: block;
+	}
+
+	.sidebar.active .logo-small{
+		display: none;
+	}
     .main-content.active{
         width: calc(100% - 240px);
         transition: all .2s ease-out;
@@ -172,4 +187,32 @@ body{
     .logo-big{
         display: none;
     }
+}
+
+.btn_container{
+	display: flex;
+	justify-content: space-around;
+}
+
+.container-table{
+	overflow-x: scroll;
+}
+
+.align-right{
+	text-align: right;
+}
+
+.pagination-custom{
+	display: flex;
+	justify-content: flex-end;
+	column-gap: 10px;
+	
+}
+
+.container-inputs{
+	display: flex;
+	column-gap: 20px;
+}
+.card-body{
+	padding-bottom: 0px;
 }

@@ -1,35 +1,53 @@
-function Table(){
+import H4 from './H4';
+import { useEffect, useState } from 'react';
 
-    const columns = ["#", "First", "Last", "Handle"];
-    const rows = [["Mark", "Mark", "Otto", "@mdo"], ["Mark", "Mark", "Otto", "@mdo"], ["Mark", "Mark", "Otto", "@mdo"]];
-
+/**
+ * 
+ * Props
+ * title, columns and rows
+ * 
+ */
+function Table({ columns, rows, title }){
+    const capitalizeFirstLetter = (val) => {
+        return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+    }
     return (
         <>
-            <table class="table table-bordered table-sm mb-4">
-                <thead>
-                    <tr>
+            <div className="pb-4 pt-2">
+                <H4>{title}</H4>
+                <div className="container-table">
+                    <table className="table table-bordered table-sm mb-4 container">
+                        <thead>
+                            <tr>
+                                {
+                                columns.map((col, index) => (
+                                    <th key={index} style={{ border: "1px solid #ddd", padding: "8px", textAlign: "left" }}>
+                                        {capitalizeFirstLetter(col.display)}
+                                    </th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
                         {
-                            columns.map( (item, index) => <th>{item}</th> )
+                            rows.length > 0 ?
+                                rows.map((row, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    {columns.map((col, colIndex) => (
+                                    <td key={colIndex} style={{ border: "1px solid #ddd", padding: "8px" }}>
+                                        {row[col.name]}
+                                    </td>
+                                    ))}
+                                </tr>
+                                ))
+                            :
+                                <tr>
+                                    <td>No Data Found</td>
+                                </tr>
                         }
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        rows.map(function(item, index){
-                            return (
-                                <>
-                                    <tr>
-                                        <td>{item[0]}</td>
-                                        <td>{item[1]}</td>
-                                        <td>{item[2]}</td>
-                                        <td>{item[3]}</td>
-                                    </tr>
-                                </>
-                            )
-                        }) 
-                    }
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </>
     )
 }

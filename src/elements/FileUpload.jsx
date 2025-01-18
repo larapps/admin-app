@@ -1,8 +1,7 @@
-function FileUpload(){
+function FileUpload(props){
     return (
-        <div class="input-group mb-4">
-            <input type="file" class="form-control" id="f1" aria-describedby="f1" aria-label="Upload"/>
-            <button class="btn-blue" type="button" id="f1">Upload</button>
+        <div className="input-group mb-4">
+            <input type="file" className="form-control" id={props.id} aria-describedby={props.id} aria-label="Upload" onChange={props.onChange}/>
         </div>
     )
 }

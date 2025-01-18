@@ -3,7 +3,7 @@ function Card(props){
         <>
             <div className="card">
                 <div className="card-header"> 
-                    { props.icon && <i class={"las "+props.icon}></i> } 
+                    { props.icon && <i className={"las "+props.icon}></i> } 
                     { props.title } 
                 </div>
 

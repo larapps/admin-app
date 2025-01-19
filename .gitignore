@@ -130,4 +130,5 @@ dist
 .pnp.*
 
 /JAVA_FILES
-at
+/excel_files
+/jar_files

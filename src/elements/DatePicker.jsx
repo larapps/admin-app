@@ -15,6 +15,12 @@ function DatePicker( props ){
         setDate( newDate );
     }
 
+    const onChangeDate = (event) => {
+        console.log("event", event);
+        setDate(event.target.value);
+        props.onChange();
+    }
+
     const pad = (num, size) => {
         num = num.toString();
         while (num.length < size) num = "0" + num;
@@ -25,7 +31,7 @@ function DatePicker( props ){
         <>
             {/* {props.name ? <label for="month-selector" className="form-label">{props.name}</label> : ""} */}
 
-            <input type="month" id="month-selector" name="month" className="form-control mb-4" value={date} onChange={(event) => setDate(event.target.value) }/>
+            <input type="month" id="month-selector" name="month" className="form-control mb-4" value={date} onChange={onChangeDate }/>
         </>
     )
 }

@@ -4,6 +4,7 @@ body{
 
 .main{
 	display: flex;
+	position: relative;
 }
 .main-content{
 	width: calc(100% - 240px);
@@ -36,6 +37,10 @@ body{
 	background: rgb(173,83,137);
 	background: linear-gradient(336deg, rgba(173,83,137,1) 0%, rgba(109,45,106,1) 22%, rgba(60,16,83,1) 100%);
 	transition: all .2s ease-out;
+	position: sticky;
+	top: 0;
+	left: 0;
+
 }
 .sidebar.active{
 	width:80px;
@@ -216,3 +221,133 @@ body{
 .card-body{
 	padding-bottom: 0px;
 }
+
+.table-fixed-column-outter {
+	position: relative;
+	max-width: 100%;
+  }
+  .table-fixed-column-inner {
+	overflow-x: scroll;
+	overflow-y: visible;
+	/* //width: 400px; */
+	/* margin-left: 100px; */
+	.table {
+	  margin-bottom: 0.25rem;
+	}
+  }
+  .table.table-fixed-column {
+	table-layout: fixed;
+	width: 100%
+  }
+  
+  .table td,
+  .table th {
+	width: 100px;
+  }
+  
+  .table th.column-1,
+  .table tr td.column-1 {
+	position: sticky;
+	left: 0;
+	width: 175px;
+  }
+
+  .table th.column-2,
+  .table tr td.column-2 {
+	position: sticky;
+	left: 175px;
+	width: 175px;
+  }
+  .table th.column-last-1,
+  .table tr td.column-last-1 {
+	position: sticky;
+	right: 0;
+	width: 175px;
+  }
+
+  .table th.column-last-2,
+  .table tr td.column-last-2 {
+	position: sticky;
+	right: 175px;
+	width: 175px;
+  }
+
+  thead, tbody{
+	font-size: 14px;
+  }
+
+  .checkbox-container{
+	column-gap: 10px;
+  }
+
+  h4.table-title{
+	font-size: 16px;
+  }
+
+  tr>th{
+	width: 175px !important;
+  }
+
+  .file-input{
+	border: 1px solid #dee2e6;
+	border-radius: 5px;
+  }
+
+  tr>th{
+	background-color: #9236BB !important;
+	color: #ffffff !important;
+  }
+
+  .container-dashboard{
+	column-gap: 30px;
+  }
+
+  .card-body canvas{
+	width: 500px !important;
+	height: 500px !important;
+  }
+
+  ul.pagination li{
+	box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+    padding: 7px 14px;
+    margin-left: 0px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    color: inherit !important;
+    border: 1px solid transparent;
+    border-radius: 2px;
+
+	color: inherit !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+	background-color: transparent;
+	font-size: 14px;
+
+  }
+
+  ul.pagination li.active{
+	background-color: #9236BB !important;
+  }
+  .pagination{
+	justify-content: end;
+  }
+  .pagination li a{
+	text-decoration: none;
+	color: #000000;
+  }
+
+  .pagination li.active a{
+	color: #ffffff;
+  }
+
+  .pagination li.disabled{
+	background-color: lightgray !important;
+	cursor: not-allowed;
+  }
+
+  .pagination li.disabled a{
+	color: black;
+	cursor: not-allowed;
+  }

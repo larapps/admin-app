@@ -8,188 +8,11 @@ import DatePicker from '../elements/DatePicker';
 import { getCookie, getDateFormatted } from '../utils/utils';
 import $ from 'jquery';
 import Input from '../elements/Input';
-import Pagination from './Pagination';
+import Pagination from "react-js-pagination";
 
 function DataSearchSection(){
 
-    const columns = [
-        {
-            "name" : "idEmpWorkingLocationCosting",
-            "display": "idEmpWorkingLocationCosting"
-        },
-        {
-            "name": "employeeId",
-            "display": "employeeId"
-            },
-            {
-            "name": "workType",
-            "display": "workType"
-            },
-            {
-            "name": "empType",
-            "display": "empType"
-            },
-            {
-            "name": "month",
-            "display": "month"
-            },
-            {
-            "name": "contractNumber",
-            "display": "contractNumber"
-            },
-            {
-            "name": "currentWorkingLocation",
-            "display": "currentWorkingLocation"
-            },
-            {
-            "name": "designation",
-            "display": "designation"
-            },
-            {
-            "name": "totalNormalDays",
-            "display": "totalNormalDays"
-            },
-            {
-            "name": "totalWeeklyOffDays",
-            "display": "totalWeeklyOffDays"
-            },
-            {
-            "name": "earnedBasic",
-            "display": "earnedBasic"
-            },
-            {
-            "name": "earnedSitebasic",
-            "display": "earnedSitebasic"
-            },
-            {
-            "name": "earnedExtraot",
-            "display": "earnedExtraot"
-            },
-            {
-            "name": "earnedNormalovertime",
-            "display": "earnedNormalovertime"
-            },
-            {
-            "name": "earnedNormalovertimeot68",
-            "display": "earnedNormalovertimeot68"
-            },
-            {
-            "name": "earnedPublicholidayot",
-            "display": "earnedPublicholidayot"
-            },
-            {
-            "name": "earnedRamadanot",
-            "display": "earnedRamadanot"
-            },
-            {
-            "name": "earnedRamadanot68",
-            "display": "earnedRamadanot68"
-            },
-            {
-            "name": "earnedWeeklyoffot",
-            "display": "earnedWeeklyoffot"
-            },
-            {
-            "name": "securityAllowance",
-            "display": "securityAllowance"
-            },
-            {
-            "name": "rolebasedAllowance",
-            "display": "rolebasedAllowance"
-            },
-            {
-            "name": "sitebasedAllowance",
-            "display": "sitebasedAllowance"
-            },
-            {
-            "name": "foodAllowance",
-            "display": "foodAllowance"
-            },
-            {
-            "name": "houserentalAllowance",
-            "display": "houserentalAllowance"
-            },
-            {
-            "name": "transportAllowance",
-            "display": "transportAllowance"
-            },
-            {
-            "name": "vehicleAllowance",
-            "display": "vehicleAllowance"
-            },
-            {
-            "name": "otherAllowance",
-            "display": "otherAllowance"
-            },
-            {
-            "name": "weekoffAllowance",
-            "display": "weekoffAllowance"
-            },
-            {
-            "name": "benefits",
-            "display": "benefits"
-            },
-            {
-            "name": "serviceBenefits",
-            "display": "serviceBenefits"
-            },
-            {
-            "name": "training",
-            "display": "training"
-            },
-            {
-            "name": "eosb",
-            "display": "eosb"
-            },
-            {
-            "name": "leaveSalary",
-            "display": "leaveSalary"
-            },
-            {
-            "name": "medicine",
-            "display": "medicine"
-            },
-            {
-            "name": "travel",
-            "display": "travel"
-            },
-            {
-            "name": "transport",
-            "display": "transport"
-            },
-            {
-            "name": "vehicleRental",
-            "display": "vehicleRental"
-            },
-            {
-            "name": "visa",
-            "display": "visa"
-            },
-            {
-            "name": "accommodation",
-            "display": "accommodation"
-            },
-            {
-            "name": "workmen",
-            "display": "workmen"
-            },
-            {
-            "name": "totalDeduction",
-            "display": "totalDeduction"
-            },
-            {
-            "name": "totalEarnings",
-            "display": "totalEarnings"
-            },
-            {
-            "name": "idUserCreated",
-            "display": "idUserCreated"
-            },
-            {
-            "name": "idUserModified",
-            "display": "idUserModified"
-            }
-    ];
+    const columns = [{ "name": "employeeId", "display": "Emp Id", "fixedClass": "column-1" }, { "name": "currentWorkingLocation", "display": "Curr Wrk Loc", "fixedClass": "column-2" }, { "name": "workType", "display": "Wrk Type" }, { "name": "empType", "display": "Emp Type" }, { "name": "month", "display": "Month" }, { "name": "contractNumber", "display": "Contract Num" }, { "name": "designation", "display": "Designation" }, { "name": "totalNormalDays", "display": "Total Normal Days" }, { "name": "totalWeeklyOffDays", "display": "Total WklyOff Days" }, { "name": "earnedBasic", "display": "Earned Basic" }, { "name": "earnedSitebasic", "display": "Earned Site Basic" }, { "name": "earnedExtraot", "display": "Earned Extra OT" }, { "name": "earnedNormalovertime", "display": "Earned Normal OT" }, { "name": "earnedNormalovertimeot68", "display": "Earned Normal OT68" }, { "name": "earnedPublicholidayot", "display": "Earned Pub Holiday OT" }, { "name": "earnedRamadanot", "display": "Earned Ramadan OT" }, { "name": "earnedRamadanot68", "display": "Earned Ramadan OT68" }, { "name": "earnedWeeklyoffot", "display": "Earned Wkly Off OT" }, { "name": "securityAllowance", "display": "SA" }, { "name": "rolebasedAllowance", "display": "RBA" }, { "name": "sitebasedAllowance", "display": "SBA" }, { "name": "foodAllowance", "display": "FA" }, { "name": "houserentalAllowance", "display": "HRA" }, { "name": "transportAllowance", "display": "TA" }, { "name": "vehicleAllowance", "display": "VA" }, { "name": "otherAllowance", "display": "OA" }, { "name": "weekoffAllowance", "display": "Wk off Allowance" }, { "name": "benefits", "display": "Benefits" }, { "name": "serviceBenefits", "display": "Service Benefits" }, { "name": "training", "display": "Training" }, { "name": "eosb", "display": "EOSB" }, { "name": "leaveSalary", "display": "Leave Salary" }, { "name": "medicine", "display": "Medicine" }, { "name": "travel", "display": "Travel" }, { "name": "transport", "display": "Transport" }, { "name": "vehicleRental", "display": "Vehicle Rental" }, { "name": "visa", "display": "Visa" }, { "name": "accommodation", "display": "Accommodation" }, { "name": "workmen", "display": "Workmen" }, { "name": "idUserCreated", "display": "User Created" }, { "name": "idUserModified", "display": "User Modified" }, { "name": "totalDeduction", "display": "Total Deduction" }, { "name": "totalEarnings", "display": "Total Earnings" } ];
     const [rows, setRows] = useState([]);
     const [showTable, setShowTable] = useState(false);
 
@@ -198,7 +21,41 @@ function DataSearchSection(){
 
     const [pageSize, setPageSize] = useState(10);
     const [pageNo, setPageNo] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalCount, setTotalCount] = useState(0);
+    const [showPagination, setShowPagination ] = useState(false);
 
+    const loadPageCount = () => {
+        axios.post(
+            "http://localhost:8080/api/admin-service/data/getEmpCostingDataSearchCount",
+            {
+                "month": getDateFormatted($("#month-selector").val()),
+                "employeeId": employeeId,
+                "workingLocation": location,
+                "pageSize": pageSize,
+                "pageNo": pageNo,
+                "sortBy": "contractNumber",
+                "idTenant": "1"
+            },
+            {
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+getCookie('token')
+                }
+            }
+        ).then((processResponse) => {
+            if(parseInt(processResponse.data) <= pageSize){
+                setShowPagination(false);
+            }else{
+                setShowPagination(true);
+            }
+            setTotalCount(processResponse.data);
+            setPageNo(0);
+            searchData();
+        }).catch((err) => {
+            console.log("json");
+        });        
+    }
 
     const searchData = () => {
         axios.post(
@@ -227,13 +84,17 @@ function DataSearchSection(){
 
     useEffect(() => {
         searchData();
+        console.log("page changed");
     },[pageNo]);
 
     const handleClick = (event) => {
-        searchData();
+        loadPageCount();
         setShowTable(true);
         console.log("handleClick");
-    } 
+    }
+    const changePage = (page) => {
+        setPageNo(page - 1);
+    }
 
     return (
         <>
@@ -257,18 +118,26 @@ function DataSearchSection(){
                         onChange = {e => setLocation(e.target.value)}
                     />
 
-                    <DatePicker />
+                    <DatePicker  onChange={() => {}} />
                     
                     <Button type="button" value="SEARCH" alignment="align-right" onClick = {handleClick}/>
                 </div>
-
-
-
                 {
                     showTable ?
                         <>
                             <Table title="" columns={columns} rows={rows} />
-                            <Pagination handleNext={() => setPageNo(pageNo + 1)} handlePrevious={() => setPageNo(pageNo - 1)}/>
+                            {
+                                showPagination ? 
+                                    <Pagination
+                                        activePage={pageNo + 1}
+                                        itemsCountPerPage={pageSize}
+                                        totalItemsCount={totalCount}
+                                        pageRangeDisplayed={5}
+                                        onChange={changePage}
+                                    />
+                                :
+                                    ""
+                            }
                         </>
                     :
                     ""

@@ -13,7 +13,17 @@ function Table({ columns, rows, title }){
         return String(val).charAt(0).toUpperCase() + String(val).slice(1);
     }
 
-    const checkIfNumber = (value) => {
+    const checkIfNumber = (value, forClass, columnName) => {
+        if(forClass){
+            if(columnName === 'employeeId'){
+                return "";
+            }
+            if(typeof(value) === 'number'){
+                return "align-right";
+            }else{
+                return "";
+            }
+        }
         if(typeof(value) === 'number'){
             return value.toFixed(roudingValue);
         }
@@ -31,7 +41,7 @@ function Table({ columns, rows, title }){
                                 <tr>
                                     {
                                     columns.map((col, index) => (
-                                        <th key={index} style={{ border: "1px solid #ddd", padding: "8px", textAlign: "left" }} className={col.fixedClass}>
+                                        <th key={index} style={{ border: "1px solid #ddd", padding: "8px", textAlign: "center" }} className={col.fixedClass}>
                                             {capitalizeFirstLetter(col.display)}
                                         </th>
                                     ))}
@@ -43,8 +53,8 @@ function Table({ columns, rows, title }){
                                     rows.map((row, rowIndex) => (
                                     <tr key={rowIndex}>
                                         {columns.map((col, colIndex) => (
-                                        <td key={colIndex} style={{ border: "1px solid #ddd", padding: "8px" }} className={col.fixedClass}>
-                                            {checkIfNumber(row[col.name])}
+                                        <td key={colIndex} style={{ border: "1px solid #ddd", padding: "8px" }} className={col.fixedClass+" "+checkIfNumber(row[col.name], true, col.name)}>
+                                            {checkIfNumber(row[col.name], false)}
                                         </td>
                                         ))}
                                     </tr>

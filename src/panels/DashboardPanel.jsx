@@ -70,13 +70,13 @@ function DashboardPanel(){
                 showChart ?
                 <>
                   <div className="d-flex container-dashboard justify-content-center">
-                    <Card title="No. of Employees" icon="">
+                    <Card title="Current Work Location vs Employees" icon="">
                         <div>
-                            <PieChart location={workingLocation} labels={workingLocation} data={employees} label="No. of Employees"/>
+                            <PieChart location={workingLocation} labels={workingLocation} data={employees} label="Current Work Location vs Employees"/>
                         </div>
                     </Card>
 
-                    <Card title="Cost" icon="">
+                    <Card title="Current Work Location vs Costing" icon="">
                         <div>
                             <PieChart location={workingLocation} labels={workingLocation} data={earnings} label="Costs"/>
                         </div>

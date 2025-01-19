@@ -33,7 +33,7 @@ function DataSearchSection(){
         },
         {
           "name": "workType",
-          "display": "Wrk Type"
+          "display": "Work Type"
         },
         {
           "name": "totalNormalDays",
@@ -171,8 +171,10 @@ function DataSearchSection(){
     const [currentPage, setCurrentPage] = useState(1);
     const [totalCount, setTotalCount] = useState(0);
     const [showPagination, setShowPagination ] = useState(false);
+    const [showLoader, setShowLoader] = useState(false);
 
     const loadPageCount = () => {
+        setShowLoader(true);
         axios.post(
             "http://localhost:8080/api/admin-service/data/getEmpCostingDataSearchCount",
             {
@@ -224,8 +226,10 @@ function DataSearchSection(){
             }
         ).then((processResponse) => {
             setRows(processResponse.data);
+            setShowLoader(false);
         }).catch((err) => {
             console.log("json");
+            setShowLoader(false);
         });
     }
 
@@ -286,6 +290,17 @@ function DataSearchSection(){
                                     ""
                             }
                         </>
+                    :
+                    ""
+                }
+
+                {
+                    showLoader ?
+                    <>
+                        <div class="loading-state">
+                            <div class="loading"></div>
+                        </div>
+                    </>
                     :
                     ""
                 }

@@ -32,7 +32,7 @@ function DataProcessSection(){
         },
         {
           "name": "workType",
-          "display": "Wrk Type"
+          "display": "Work Type"
         },
         {
           "name": "totalNormalDays",
@@ -167,7 +167,10 @@ function DataProcessSection(){
     const [totalCount, setTotalCount] = useState(0);
     const [showPagination, setShowPagination ] = useState(false);
 
+    const [showLoader, setShowLoader] = useState(false);
+
     const loadPageCount = () => {
+      setShowLoader(true);
         axios.post(
             "http://localhost:8080/api/admin-service/data/getEmpCostingDataSearchCount",
             {
@@ -199,6 +202,7 @@ function DataProcessSection(){
 
 
     const processData = () => {
+        setShowLoader(true);
         axios.post(
             "http://localhost:8080/api/admin-service/data/processData",
              {
@@ -219,12 +223,14 @@ function DataProcessSection(){
                 setRows([]);
                 setShowTable(true);
             }
+            setShowLoader(false);
         }).catch((err) => {
+            setShowLoader(false);
             console.log("json");
         });
     }
 
-    const getData = () => {
+    const getData = (pageNo = 0) => {
         axios.post(
                 "http://localhost:8080/api/admin-service/data/getEmpCostingSearchDetails",
                  {
@@ -242,7 +248,7 @@ function DataProcessSection(){
           }
         ).then((processResponse) => {
             setRows(processResponse.data);
-
+            setShowTable(true);
         }).catch((err) => {
             console.log("json");
         });
@@ -250,12 +256,12 @@ function DataProcessSection(){
     } 
 
     useEffect(() => {
-        getData();
+        // getData();
     },[pageNo]);
 
     const handleClick = (event) => {
+        setShowLoader(true);
         processData();
-        setShowTable(true);
     } 
 
     const changePage = (page) => {
@@ -289,6 +295,17 @@ function DataProcessSection(){
                                     ""
                             }
                         </>
+                    :
+                    ""
+                }
+
+                {
+                    showLoader ?
+                    <>
+                        <div class="loading-state">
+                            <div class="loading"></div>
+                        </div>
+                    </>
                     :
                     ""
                 }

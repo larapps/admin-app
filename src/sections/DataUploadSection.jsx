@@ -34,6 +34,7 @@ function DataUploadSection(){
     const [pageNo, setPageNo] = useState(0);
     const [totalCount, setTotalCount] = useState(0);
     const [showPagination, setShowPagination ] = useState(false);
+    const [showLoader, setShowLoader] = useState(false);
 
     const loadPageCount = () => {
         let url = 'http://localhost:8080/api/admin-service/data/getEmpAttendanceSearchCounts';
@@ -64,12 +65,14 @@ function DataUploadSection(){
             setTotalCount(processResponse.data);
             loadData();
         }).catch((err) => {
+            setShowLoader(false);
             console.log("json");
         });        
     }
 
     const loadData = () => {
         if(attendanceChecked || payrollChecked){
+            setShowLoader(true);
             let requestParams = {
                 "month": getDateFormatted($("#month-selector").val()),
                 "pageSize": "10",
@@ -100,8 +103,10 @@ function DataUploadSection(){
                 }
     
                 setShowTables(true);
+                setShowLoader(false);
     
             })).catch((err) => {
+                setShowLoader(false);
                 console.log("json");
             });
         }
@@ -151,6 +156,7 @@ function DataUploadSection(){
 
         // Request made to the backend api
         // Send formData object
+        setShowLoader(true);
         axios.post("http://localhost:8080/api/admin-service/data/uploadAttendanceAndCostingDetails",formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -256,6 +262,17 @@ function DataUploadSection(){
                             :
                                 ""
                         }
+                    </>
+                    :
+                    ""
+                }
+
+                {
+                    showLoader ?
+                    <>
+                        <div class="loading-state">
+                            <div class="loading"></div>
+                        </div>
                     </>
                     :
                     ""

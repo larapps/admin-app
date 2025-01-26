@@ -377,3 +377,9 @@ body{
 	  transform: rotate(360deg);
 	}
   }
+
+  button.disabled-btn{
+	cursor: not-allowed !important;
+	opacity: 0.6;
+	pointer-events: none;
+  }

@@ -13,7 +13,7 @@ import Pagination from "react-js-pagination";
 function DataSearchSection(){
 
     const columns = [
-        {
+         {
           "name": "contractNumber",
           "display": "Contract Num",
           "fixedClass": "column-1"
@@ -81,19 +81,19 @@ function DataSearchSection(){
         },
         {
           "name": "securityAllowance",
-          "display": "SA"
+          "display": "Security Allowance"
         },
         {
           "name": "rolebasedAllowance",
-          "display": "RBA"
+          "display": "Role Based Allowance"
         },
         {
           "name": "sitebasedAllowance",
-          "display": "SBA"
+          "display": "Site Based Allowance"
         },
         {
           "name": "foodAllowance",
-          "display": "FA"
+          "display": "Food Allowance"
         },
         {
           "name": "houserentalAllowance",
@@ -101,15 +101,15 @@ function DataSearchSection(){
         },
         {
           "name": "transportAllowance",
-          "display": "TA"
+          "display": "Transport Allowance"
         },
         {
           "name": "vehicleAllowance",
-          "display": "VA"
+          "display": "Vehile Allowance"
         },
         {
           "name": "otherAllowance",
-          "display": "OA"
+          "display": "Other Allowance"
         },
         {
           "name": "serviceBenefits",
@@ -158,6 +158,14 @@ function DataSearchSection(){
         {
           "name": "accommodation",
           "display": "Accommodation"
+        },
+        {
+          "name": "totalDeduction",
+          "display": "Total Deduction"
+        },
+        {
+          "name": "totalEarnings",
+          "display": "Total Earnings"
         }
       ];
     const [rows, setRows] = useState([]);

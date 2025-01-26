@@ -80,19 +80,19 @@ function DataProcessSection(){
         },
         {
           "name": "securityAllowance",
-          "display": "SA"
+          "display": "Security Allowance"
         },
         {
           "name": "rolebasedAllowance",
-          "display": "RBA"
+          "display": "Role Based Allowance"
         },
         {
           "name": "sitebasedAllowance",
-          "display": "SBA"
+          "display": "Site Based Allowance"
         },
         {
           "name": "foodAllowance",
-          "display": "FA"
+          "display": "Food Allowance"
         },
         {
           "name": "houserentalAllowance",
@@ -100,15 +100,15 @@ function DataProcessSection(){
         },
         {
           "name": "transportAllowance",
-          "display": "TA"
+          "display": "Transport Allowance"
         },
         {
           "name": "vehicleAllowance",
-          "display": "VA"
+          "display": "Vehicle Allowance"
         },
         {
           "name": "otherAllowance",
-          "display": "OA"
+          "display": "Other Allowance"
         },
         {
           "name": "serviceBenefits",
@@ -157,6 +157,14 @@ function DataProcessSection(){
         {
           "name": "accommodation",
           "display": "Accommodation"
+        },
+        {
+          "name": "totalDeduction",
+          "display": "Total Deduction"
+        },
+        {
+          "name": "totalEarnings",
+          "display": "Total Earnings"
         }
       ];
     const [rows, setRows] = useState([]);

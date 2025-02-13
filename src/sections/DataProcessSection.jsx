@@ -174,6 +174,7 @@ function DataProcessSection(){
     const [currentPage, setCurrentPage] = useState(1);
     const [totalCount, setTotalCount] = useState(0);
     const [showPagination, setShowPagination ] = useState(false);
+    const [btnDisabled, setBtnDisabled ] = useState(true);
 
     const [showLoader, setShowLoader] = useState(false);
 
@@ -224,6 +225,7 @@ function DataProcessSection(){
             }
         }
         ).then((processResponse) => {
+            setBtnDisabled(true);
             setShowPagination(false);
             if(processResponse.data === true){
                 loadPageCount();
@@ -255,6 +257,7 @@ function DataProcessSection(){
             }
           }
         ).then((processResponse) => {
+            setBtnDisabled(false);
             setRows(processResponse.data);
             setShowTable(true);
         }).catch((err) => {
@@ -276,6 +279,34 @@ function DataProcessSection(){
         setPageNo(page - 1);
     }
 
+    
+    const exportData = () => {
+      console.log("hello");
+      setShowLoader(true);
+
+      axios.post(
+        "http://localhost:8080/api/admin-service/data/exportEmpCostingSearchDetails",
+        {
+            "month": getDateFormatted($("#month-selector").val()),
+            "idTenant": "1"
+        },
+        {
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+getCookie('token')
+            }
+      }).then((response) => {
+        setShowLoader(false);
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'process-report-'+getDateFormatted($("#month-selector").val())+'.csv');
+        document.body.appendChild(link);
+        link.click();
+        // loadSuccessToast();
+      });
+    }
+
 
     return (
         <>
@@ -284,6 +315,8 @@ function DataProcessSection(){
                     <DatePicker onChange={() => {}}/>
 
                     <Button type="button" value="PROCESS" onClick = {handleClick} alignment="align-right"/>
+                    
+                    <Button type="button" value="EXPORT" alignment="align-right" additionalClass={btnDisabled ? "disabled-btn" : ""} onClick = {exportData}/>
                 </div>
 
                 {

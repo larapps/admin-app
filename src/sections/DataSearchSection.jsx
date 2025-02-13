@@ -241,6 +241,32 @@ function DataSearchSection(){
         });
     }
 
+    const exportData = () => {
+      console.log("hello");
+      setShowLoader(true);
+
+      axios.post(
+        "http://localhost:8080/api/admin-service/data/exportEmpCostingSearchDetails",
+        {
+            "month": getDateFormatted($("#month-selector").val()),
+            "idTenant": "1"
+        },
+        {
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+getCookie('token')
+            }
+      }).then((response) => {
+        setShowLoader(false);
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'search-report-'+getDateFormatted($("#month-selector").val())+'.csv');
+        document.body.appendChild(link);
+        link.click();
+    });
+    }
+
     useEffect(() => {
         searchData();
         console.log("page changed");
@@ -251,6 +277,7 @@ function DataSearchSection(){
         setShowTable(true);
         console.log("handleClick");
     }
+
     const changePage = (page) => {
         setPageNo(page - 1);
     }
@@ -280,6 +307,8 @@ function DataSearchSection(){
                     <DatePicker  onChange={() => {}} />
                     
                     <Button type="button" value="SEARCH" alignment="align-right" onClick = {handleClick}/>
+
+                    <Button type="button" value="EXPORT" alignment="align-right" onClick = {exportData}/>
                 </div>
                 {
                     showTable ?

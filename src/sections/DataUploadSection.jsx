@@ -242,7 +242,7 @@ function DataUploadSection(){
                     showTables ?
                     <>
                         <div className="d-flex justify-content-end checkbox-container">
-                            <Radio name="attendance" id="attendance" label="Attendance" defaultChecked={attendanceChecked} onClick={handleRadioClick}/>
+                            {/* <Radio name="attendance" id="attendance" label="Attendance" defaultChecked={attendanceChecked} onClick={handleRadioClick}/> */}
                             <Radio name="payroll" id="payroll" label="Payroll" defaultChecked={payrollChecked} onClick={handleRadioClick}/>
                         </div>
                         {

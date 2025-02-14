@@ -132,3 +132,6 @@ dist
 /JAVA_FILES
 /excel_files
 /jar_files
+
+/build
+*.zip

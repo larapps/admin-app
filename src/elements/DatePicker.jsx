@@ -17,7 +17,13 @@ function DatePicker( props ){
 
     const onChangeDate = (event) => {
         console.log("event", event);
-        setDate(event.target.value);
+        if( event.target.value !== "" ){
+            setDate(event.target.value);
+        }else{
+            let newDate1 = new Date();
+            setDate( newDate1.getFullYear() +"-"+ pad(newDate1.getMonth() + 1, 2) );
+        }
+
         props.onChange();
     }
 

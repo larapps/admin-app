@@ -5,6 +5,7 @@ import DatePicker from '../elements/DatePicker';
 import $ from 'jquery';
 import { useState, useEffect } from 'react';
 import { getCookie, getDateFormatted } from '../utils/utils';
+import { ToastContainer, toast } from 'react-toastify';
 
 function DashboardPanel(){
     const [data, setData] = useState([]);
@@ -53,12 +54,19 @@ function DashboardPanel(){
           }
         }).catch((err) => {
         console.log("json");
+        loadFailureToast();
         });
       }
   
       useEffect(() => {
         getData();
       },[]);
+
+      const loadFailureToast = () => {
+        toast.error('An internal error occured. Please try again later.', {
+            position: 'bottom-right',
+        });
+      }
 
     return (
         <>
@@ -100,6 +108,7 @@ function DashboardPanel(){
                   </div>
                 </>
               }
+              <ToastContainer />
 
             </div>
         </>

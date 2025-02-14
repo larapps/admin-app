@@ -9,6 +9,7 @@ import { getCookie, getDateFormatted } from '../utils/utils';
 import $ from 'jquery';
 import Input from '../elements/Input';
 import Pagination from "react-js-pagination";
+import { ToastContainer, toast } from 'react-toastify';
 
 function DataSearchSection(){
 
@@ -35,13 +36,13 @@ function DataSearchSection(){
           "name": "workType",
           "display": "Work Type"
         },
+        // {
+        //   "name": "totalNormalDays",
+        //   "display": "Total Normal Days"
+        // },
         {
-          "name": "totalNormalDays",
-          "display": "Total Normal Days"
-        },
-        {
-          "name": "totalWeeklyOffDays",
-          "display": "Total WklyOff Days"
+          "name": "totaldays",
+          "display": "Total Days"
         },
         {
           "name": "earnedBasic",
@@ -158,14 +159,6 @@ function DataSearchSection(){
         {
           "name": "accommodation",
           "display": "Accommodation"
-        },
-        {
-          "name": "totalDeduction",
-          "display": "Total Deduction"
-        },
-        {
-          "name": "totalEarnings",
-          "display": "Total Earnings"
         }
       ];
     const [rows, setRows] = useState([]);
@@ -210,6 +203,8 @@ function DataSearchSection(){
             setPageNo(0);
             searchData();
         }).catch((err) => {
+            setShowLoader(false);
+            loadFailureToast();
             console.log("json");
         });        
     }
@@ -238,6 +233,7 @@ function DataSearchSection(){
         }).catch((err) => {
             console.log("json");
             setShowLoader(false);
+            loadFailureToast();
         });
     }
 
@@ -255,16 +251,22 @@ function DataSearchSection(){
             headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer '+getCookie('token')
-            }
+            },
+            responseType: 'arraybuffer', 
       }).then((response) => {
+        // console.log("response", response);
         setShowLoader(false);
-        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', 'search-report-'+getDateFormatted($("#month-selector").val())+'.csv');
+        link.setAttribute('download', 'report_'+getDateFormatted($("#month-selector").val())+'.xlsx');
         document.body.appendChild(link);
         link.click();
-    });
+    }).catch((err) => {
+      console.log("json");
+      setShowLoader(false);
+      loadFailureToast();
+  });
     }
 
     useEffect(() => {
@@ -279,8 +281,15 @@ function DataSearchSection(){
     }
 
     const changePage = (page) => {
+      console.log("page", page);
         setPageNo(page - 1);
     }
+
+    const loadFailureToast = () => {
+      toast.error('An internal error occured. Please try again later.', {
+          position: 'bottom-right',
+      });
+  }
 
     return (
         <>
@@ -343,6 +352,7 @@ function DataSearchSection(){
                 }
 
             </Card>
+            <ToastContainer />
         </>
     )
 }

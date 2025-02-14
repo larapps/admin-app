@@ -66,6 +66,7 @@ function DataUploadSection(){
             loadData();
         }).catch((err) => {
             setShowLoader(false);
+            loadFailureToastServer();
             console.log("json");
         });        
     }
@@ -107,6 +108,7 @@ function DataUploadSection(){
     
             })).catch((err) => {
                 setShowLoader(false);
+                loadFailureToastServer();
                 console.log("json");
             });
         }
@@ -124,9 +126,9 @@ function DataUploadSection(){
 
     // On file upload (click the upload button)
     const onFileUpload = () => {
-        console.log("file upload",attendanceFile, payrollFile);
+        console.log("file upload", payrollFile);
         setShowError(false);
-        if($("#month-selector").val().trim() === '' || payrollFile.name === undefined || attendanceFile.name === undefined || attendanceFile.name.indexOf('.xlsx') === -1 || payrollFile.name.indexOf('.xlsx') === -1){
+        if($("#month-selector").val().trim() === '' || payrollFile.name === undefined || payrollFile.name.indexOf('.xlsx') === -1){
             setShowError(true);
             return false;
         }
@@ -135,11 +137,6 @@ function DataUploadSection(){
         
 
         // Update the formData object
-        formData.append(
-            "attendanceFile",
-            attendanceFile,
-            attendanceFile.name
-        );
 
         formData.append(
             "payrollFile",
@@ -163,7 +160,7 @@ function DataUploadSection(){
                 'Authorization': 'Bearer '+getCookie('token')
             }}).then((processResponse) => {
                 if(processResponse.data === true){
-                    setAttendanceChecked(true);
+                    setPayrollChecked(true);
                     loadPageCount();
                     loadSuccessToast();
                 }else{
@@ -173,6 +170,7 @@ function DataUploadSection(){
                     loadFailureToast();
                 }
             }).catch((err) => {
+                setShowLoader(false);
                 loadFailureToast();
                 console.log("json");
             });
@@ -213,18 +211,23 @@ function DataUploadSection(){
         setPageNo(page - 1);
     }
 
+    const loadFailureToastServer = () => {
+        toast.error('An internal error occured. Please try again later.', {
+            position: 'bottom-right',
+        });
+      }
+
     return (
         <>
             <Card title="Data Upload" icon="la-cloud-upload-alt">
                 <div className="container-inputs">
-                    <FileUpload onChange = {onFileChange} id="attendance-file" label="Attendance"/>
 
                     <FileUpload onChange = {onFileChange} id="payroll-file" label="Payroll"/>
 
                     <DatePicker  onChange={() => {}} />
 
                     <Button type="button" value="Upload" className="btn-blue" onClick={onFileUpload}/>
-                    <Button type="button" value="Process" className="btn-blue" onClick={() => window.location.href="/data-process"} />
+                    <Button type="button" value="Go for Process" className="btn-blue" alignment="width-full" onClick={() => window.location.href="/data-process"} />
                 </div>
 
                 {showError ? 
